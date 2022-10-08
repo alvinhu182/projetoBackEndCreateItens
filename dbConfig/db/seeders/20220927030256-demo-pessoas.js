@@ -7,45 +7,33 @@ module.exports = {
       [
         {
           nome: "Alvinhu",
-          ativo: true,
+          vendedor_id:1,
           email: "alvinhu@teste.com",
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
         {
             nome: "Alexandre do Overwatch",
-            ativo: true,
+            vendedor_id:2,
             email: "alexandre@teste.com",
-            createdAt: new Date(),
-            updatedAt: new Date()
         },
         {
             nome: "Thor",
-            ativo: true,
+            vendedor_id:3,
             email: "Thor@teste.com",
-            createdAt: new Date(),
-            updatedAt: new Date()
         },
         {
             nome: "Sebastião",
-          ativo: true,
+            vendedor_id:4,
           email: "sebastiao@teste.com",
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
         {
           nome: "Roberval",
-          ativo: true,
+          vendedor_id:5,
           email: "roberval@teste.com",
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
         {
           nome: "PocosNet",
-          ativo: false,
+          vendedor_id:6,
           email: "pocosnet@netruim.com",
-          createdAt: new Date(),
-          updatedAt: new Date()
         }
       ],
       {}

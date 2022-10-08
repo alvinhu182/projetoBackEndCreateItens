@@ -1,3 +1,4 @@
+
 const jwt = require("jsonwebtoken");
 const database = require("../../../dbConfig/db/models");
 require("dotenv").config();
@@ -46,6 +47,7 @@ const authMidComprador = async (req, res, next) => {
   }
 };
 */
+
 const authMidVendedor = async (req, res, next) => {
   const token = req.headers.authorization;
   if (token) {

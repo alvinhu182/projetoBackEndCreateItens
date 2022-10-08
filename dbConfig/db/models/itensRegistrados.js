@@ -18,14 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   itensRegistrados.init({
-    Nome: DataTypes.STRING,
+    itensRegistrados_id: DataTypes.INTEGER,
+    status:DataTypes.BOOLEAN,
+    vendedor_id: DataTypes.INTEGER,
     tipo: DataTypes.STRING,
-    disponivel: DataTypes.BOOLEAN,
-    preco: DataTypes.STRING
+    preco: DataTypes.STRING,
+    data_listagem: DataTypes.DATEONLY
     },
     {
       sequelize,
-      modelName: "ItensRegistrados",
+      modelName: "itensRegistrados",
       paranoid: true
     }
   );

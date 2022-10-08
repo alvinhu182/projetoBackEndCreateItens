@@ -75,18 +75,18 @@ class PeopleController {
   }
 
   static async editPessoas(req, res) {
-    const { person_id } = req.params;
+    const { vendedor_id } = req.params;
     const newPessoas = req.body;
     try {
       await database.pessoas.update(newPessoas, {
         where: {
-          id: Number(pessoas_id)
+          id: Number(vendedor_id)
         }
       });
 
       const updatedPessoas = await database.pessoas.findOne({
         where: {
-          id: Number(pessoas_id)
+          id: Number(vendedor_id)
         }
       });
       return res
@@ -97,12 +97,12 @@ class PeopleController {
     }
   }
 
-  static async deletePessoas(req, res) {
-    const { pessoas_id } = req.params;
+  static async deleteItem(req, res) {
+    const { item_id } = req.params;
     try {
-      await database.Pessoas.destroy({
+      await database.item.destroy({
         where: {
-          id: Number(pessoas_id)
+          id: Number(item_id)
         }
       });
       return res.status(200).send("Vendedor deletado com sucesso");
@@ -112,11 +112,11 @@ class PeopleController {
   }
 
   static async restorePessoas(req, res) {
-    const { pessoas_id } = req.params;
+    const { vendedor_id } = req.params;
     try {
       await database.pessoas.restore({
         where: {
-          id: Number(pessoas_id)
+          id: Number(vendedor_id)
         }
       });
       return res.status(200).send({ msg: "Vendedor restaurado com sucesso!" });
@@ -133,7 +133,7 @@ class PeopleController {
           { where: { id: Number(vendedor_id) } },
           { transaction: trans }
         );
-        await database.itemListado.update(
+        await database.itensRegistrados.update(
           { status: "Fora de estoque" },
           {
             where: {
@@ -143,28 +143,28 @@ class PeopleController {
           { transaction: trans }
         );
         return res.status(200).send({
-          message: `item listado referente ao vendedor do id :  ${vendedor_id} se encontra fora de estoque`
+          message: `item registrado referente ao vendedor do id :  ${vendedor_id} se encontra fora de estoque`
         });
       });
     } catch (error) {}
   }
 
-  static async getItemListadoByClass(req, res) {
+  static async getitensRegistradosByClass(req, res) {
     const { venda_id } = req.params;
     try {
-      const itemListado = await database.itemListado.findAndCountAll({
+      const itensRegistrados = await database.itensRegistrados.findAndCountAll({
         where: {
           item_id: Number(venda_id),
           status: "Vendido"
         }
       });
-      return res.status(200).send(itemListado);
+      return res.status(200).send(itensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
 
-  static async getItemListadoByPerson(req, res) {
+  static async getitensRegistradosPorPessoa(req, res) {
     const { vendedor_id } = req.params;
     try {
       const vendedor = await database.Pessoas.findOne({
@@ -173,70 +173,70 @@ class PeopleController {
         }
       });
 
-      const itemListado = await vendedor.getitemListadoConfirmados();
+      const itensRegistrados = await vendedor.getitensRegistradosConfirmados();
       if (!vendedor) {
         return res.status(203).send({ msgError: "Vendedor não encontrado!" });
       }
-      return res.status(200).send(itemListado);
+      return res.status(200).send(itensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
 
-  static async getOneItemListadoByPerson(req, res) {
-    const { itemListado_id, vendedor_id } = req.params;
+  static async getOneItemRegistradoPorPessoa(req, res) {
+    const { itensRegistrados_id, vendedor_id } = req.params;
     try {
-      const oneItemListado = await database.ItemListado.findOne({
+      const oneitensRegistrados = await database.itemRegistrado.findOne({
         where: {
-          id: Number(itemListado_id),
+          id: Number(itensRegistrados_id),
           vendedor_id: Number(vendedor_id)
         }
       });
-      if (!oneItemListado) {
+      if (!oneitensRegistrados) {
         return res.status(203).send({ msgError: "Item não encontrado!" });
       }
-      return res.status(200).send(oneItemListado);
+      return res.status(200).send(oneitensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
 
-  static async createItemListado(req, res) {
+  static async createitensRegistrados(req, res) {
     const { vendedor_id } = req.params;
-    const newitemListado = { ...req.body, vendedor_id: Number(vendedor_id) };
+    const newitensRegistrados = { ...req.body, vendedor_id: Number(vendedor_id) };
     try {
-      const verifyingVendedor = await database.ItemListado.findOne({
+      const verifyingVendedor = await database.itensRegistrados.findOne({
         where: {
           vendedor_id: Number(vendedor_id)
         }
       });
       if (!verifyingVendedor) {
-        return res.status(400).send({ msgError: "item já listado!" });
+        return res.status(400).send({ msgError: "item já registrado!" });
       }
-      const createdItemListado = await database.itemListado.create(newitemListado);
+      const createditensRegistrados = await database.itensRegistrados.create(newitensRegistrados);
       return res
         .status(200)
-        .send({ msgSuccess: "item listado com sucesso!", ...createditemListado });
+        .send({ msgSuccess: "item registrado com sucesso!", ...createditensRegistrados });
     } catch (error) {}
   }
 
-  static async editItemListado(req, res) {
-    const { vendedor_id, itemListado_id } = req.params;
-    const newItemListadoInfo = req.body;
+  static async editItemRegistrado(req, res) {
+    const { vendedor_id, itensRegistrados_id } = req.params;
+    const newitensRegistradosInfo = req.body;
     try {
-      await database.itemListado.update(newItemListadoInfo, {
+      await database.itensRegistrados.update(newitensRegistradosInfo, {
         where: {
-          id: Number(itemListado_id),
+          id: Number(itensRegistrados_id),
           vendedor_id: Number(vendedor_id)
         }
       });
 
-      const updatedItemListado = await database.itemListado.findOne({
+      const updateditensRegistrados = await database.itensRegistrados.findOne({
         where: {
-          id: Number(itemListado_id)
+          id: Number(itensRegistrados_Id)
         }
       });
-      return res.status(200).send(updatedItemListado);
+      return res.status(200).send(updateditensRegistrados_Id);
     } catch (error) {
       return res
         .status(500)
@@ -244,12 +244,12 @@ class PeopleController {
     }
   }
 
-  static async deleteitemListado(req, res) {
-    const { itemListado_id } = req.params;
+  static async deleteitensRegistrados(req, res) {
+    const { itensRegistrados_id } = req.params;
     try {
-      await database.itemListado.destroy({
+      await database.itensRegistrados.destroy({
         where: {
-          id: Number(itemListado_id)
+          id: Number(itensRegistrados_id)
         }
       });
       return res.status(200).send({ msg: "Deletado com sucesso!" });

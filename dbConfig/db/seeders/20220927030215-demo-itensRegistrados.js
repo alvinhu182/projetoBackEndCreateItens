@@ -9,36 +9,37 @@ module.exports = {
      */ 
       await queryInterface.bulkInsert('ItensRegistrados', 
       [{
+        item_id:1,
+        itensRegistrados_id:1,
         vendedor_id: 1,
-        nome: "Espada de fogo",
         disponivel: true,
         preco: "10000",
-        createdAt: new Date(),
-        updatedAt: new Date() 
+        data_listagem: new Date(),
+
       },
       {
+        item_id:2,
+        itensRegistrados_id:2,
         vendedor_id: 2,
-        nome: "Arco de gelo",
         disponivel: true,
         preco: "200000",
-        createdAt: new Date(),
-        updatedAt: new Date()
+        data_listagem: new Date(),
       },
       {
+        item_id:3,
+        itensRegistrados_id:3,
         vendedor_id: 3,
-        nome: "Cajado de luz",
         disponivel: true,
         preco: "300000",
-        createdAt: new Date(),
-        updatedAt: new Date()
+        data_listagem: new Date(),
       },
       {
+        item_id:4,
+        itensRegistrados_id:4,
         vendedor_id:1,
-        nome: "Adaga venenosa",
         disponivel: true,
         preco: "400000",
-        createdAt: new Date(),
-        updatedAt: new Date()
+        data_listagem: new Date(),
       }])
     },
 

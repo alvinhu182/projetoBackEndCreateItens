@@ -5,18 +5,20 @@ module.exports = (sequelize, DataTypes) => {
   class Pessoas extends Model {
    
     static associate(models) {
-      Pessoas.hasMany(models.itens, {
+      /*
+      Pessoas.hasOne(models.itens, {
         foreignKey: "vendedor_id"
       });
-      Pessoas.hasMany(models.itensRegistrados, {
+     Pessoas.hasOne(models.itensRegistrados, {
         foreignKey: "vendedor_id"
       });
+      */
     }
   }
   Pessoas.init(
     {
       nome: DataTypes.STRING,
-      ativo: DataTypes.BOOLEAN,
+      vendedor_id: DataTypes.INTEGER,
       email: DataTypes.STRING,
     },
     {
