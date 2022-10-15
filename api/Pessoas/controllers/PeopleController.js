@@ -4,7 +4,7 @@ class PeopleController {
   //static significa que é um método estático: não precisa criar uma nova instância da classe através do "new"
   static async getActivePeople(req, res) {
     try {
-      const allTruePeople = await database.Pessoas.findAll();
+      const allTruePeople = await database.pessoas.findAll();
       return res.status(200).send(allTruePeople);
     } catch (error) {
       return res.status(500).send(error.message);
@@ -13,7 +13,7 @@ class PeopleController {
 
   static async getAllFalse(req, res) {
     try {
-      const allFalsePeople = await database.Pessoas.scope("allFalse").findAll();
+      const allFalsePeople = await database.pessoas.scope("allFalse").findAll();
       return res.status(200).send(allFalsePeople);
     } catch (error) {
       return res.status(500).send(error.message);
@@ -21,7 +21,7 @@ class PeopleController {
   }
   static async getPeople(req, res) {
     try {
-      const allFalsePeople = await database.Pessoas.findAll({
+      const allFalsePeople = await database.pessoas.findAll({
         paranoid: false
       });
       return res.status(200).send(allFalsePeople);
@@ -33,7 +33,7 @@ class PeopleController {
   static async getOne(req, res) {
     const { pessoa_id } = req.params;
     try {
-      const pessoas = await database.Pessoas.findOne({
+      const pessoas = await database.pessoas.findOne({
         where: {
           id: Number(pessoas_id)
         }
@@ -84,7 +84,7 @@ class PeopleController {
         }
       });
 
-      const updatedPessoas = await database.pessoas.findOne({
+      const updatedpessoas = await database.pessoas.findOne({
         where: {
           id: Number(vendedor_id)
         }
@@ -111,7 +111,7 @@ class PeopleController {
     }
   }
 
-  static async restorePessoas(req, res) {
+  static async restorepessoas(req, res) {
     const { vendedor_id } = req.params;
     try {
       await database.pessoas.restore({
@@ -128,7 +128,7 @@ class PeopleController {
 
     try {
       database.sequelize.transaction(async (trans) => {
-        await database.Pessoas.update(
+        await database.pessoas.update(
           { ativo: false },
           { where: { id: Number(vendedor_id) } },
           { transaction: trans }
@@ -167,7 +167,7 @@ class PeopleController {
   static async getitensRegistradosPorPessoa(req, res) {
     const { vendedor_id } = req.params;
     try {
-      const vendedor = await database.Pessoas.findOne({
+      const vendedor = await database.pessoas.findOne({
         where: {
           id: Number(vendedor_id)
         }

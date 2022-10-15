@@ -11,7 +11,7 @@ const router = Router();
 //Pega todos os itens
 router.get("/itens", authMidVendedor, itensRegistradosController.getAllitensRegistrados);
 //Pega o item pelo ID
-router.get("/itens/:venda_id", itensRegistradosController.getOneitensRegistrados);
+router.get("/itens/:itensRegistrados_id", itensRegistradosController.getOneitensRegistrados);
 
 // ------------ POST -------------
 //Cadastra um item
@@ -19,11 +19,11 @@ router.post("/itens", authMidVendedor, itensRegistradosController.createitensReg
 
 // ------------ PUT -------------
 //Edita um item
-router.put("/itens/:venda_id", itensRegistradosController.updateitensRegistrados);
+router.put("/itens/:itensRegistrados_id", itensRegistradosController.updateitensRegistrados);
 
 // ------------ DELETE -------------
 //Deleta uma item
-router.delete("/itens/:venda_id", itensRegistradosController.deleteitensRegistrados);
+router.delete("/itens/:itensRegistrados_id", itensRegistradosController.deleteitensRegistrados);
 
 module.exports = router;
 

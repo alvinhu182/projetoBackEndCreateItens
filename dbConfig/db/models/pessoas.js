@@ -1,46 +1,48 @@
-"use strict";
-const { Model } = require("sequelize");
-
+'use strict';
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Pessoas extends Model {
-   
+  class pessoas extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
     static associate(models) {
-      /*
-      Pessoas.hasOne(models.itens, {
+      pessoas.hasOne(models.itens, {
         foreignKey: "vendedor_id"
       });
-     Pessoas.hasOne(models.itensRegistrados, {
+      pessoas.hasOne(models.itensRegistrados, {
         foreignKey: "vendedor_id"
       });
-      */
     }
   }
-  Pessoas.init(
-    {
-      nome: DataTypes.STRING,
-      vendedor_id: DataTypes.INTEGER,
-      email: DataTypes.STRING,
+  pessoas.init({
+    vendedor_id: DataTypes.INTEGER,
+    nome: DataTypes.STRING,
+    email: DataTypes.STRING,
+  }, {
+    sequelize,
+    modelName: "pessoas",
+    paranoid: true,
+    defaultScope: {
+      where: {
+        ativo: true
+      }
     },
-    {
-      sequelize,
-      modelName: "Pessoas",
-      paranoid: true,
-      defaultScope: {
-        where: {
-          ativo: true
-        }
+    scopes: {
+      all: {
+        where: {}
       },
-      scopes: {
-        all: {
-          where: {}
-        },
-        allFalse: {
-          where: {
-            ativo: false
-          }
+      allFalse: {
+        where: {
+          ativo: false
         }
       }
     }
-  );
-  return Pessoas;
+  }
+);
+return pessoas;
 };
+

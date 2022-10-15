@@ -9,37 +9,45 @@ module.exports = {
      */ 
       await queryInterface.bulkInsert('ItensRegistrados', 
       [{
+        id:1,
         item_id:1,
-        itensRegistrados_id:1,
         vendedor_id: 1,
-        disponivel: true,
+        status: true,
         preco: "10000",
         data_listagem: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
-      {
+      {  
+        id:2,
         item_id:2,
-        itensRegistrados_id:2,
         vendedor_id: 2,
-        disponivel: true,
+        status: true,
         preco: "200000",
         data_listagem: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
+        id:3,
         item_id:3,
-        itensRegistrados_id:3,
         vendedor_id: 3,
-        disponivel: true,
+        status: true,
         preco: "300000",
         data_listagem: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
+        id:4,
         item_id:4,
-        itensRegistrados_id:4,
-        vendedor_id:1,
-        disponivel: true,
+        vendedor_id:4,
+        status: true,
         preco: "400000",
         data_listagem: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date()
       }])
     },
 
