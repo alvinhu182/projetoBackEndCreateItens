@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   itensRegistrados.init({
-   // itensRegistrados_id: DataTypes.INTEGER,
+    item_id: DataTypes.INTEGER,
     status:DataTypes.BOOLEAN,
     vendedor_id: DataTypes.INTEGER,
     preco: DataTypes.STRING,

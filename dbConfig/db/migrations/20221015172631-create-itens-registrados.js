@@ -24,8 +24,8 @@ module.exports = {
       item_id: {
         allowNull: false,
         references:{
-          model: "itens",
-          key: "item_id",
+          model: "Itens",
+          key: "id",
           unique: true
         },
         type: Sequelize.INTEGER,

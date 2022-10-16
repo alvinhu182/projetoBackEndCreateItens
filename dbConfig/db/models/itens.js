@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     nome_do_item: DataTypes.STRING,
     vendedor_id: DataTypes.INTEGER,
     disponivel: DataTypes.BOOLEAN,
-    item_id: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Itens',
@@ -32,4 +31,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Itens;
 };
-
