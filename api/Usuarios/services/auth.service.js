@@ -5,8 +5,10 @@ require("dotenv").config();
 
 const createToken = async (req, res) => {
   const { email, senha, nome } = req.body;
+  console.log(senha)
   try {
     const user = await database.AdminUsers.findOne({
+      
       where: {
         email: email
       }
@@ -17,7 +19,8 @@ const createToken = async (req, res) => {
           email: email,
           nome: nome,
         };
-        const token = jwt.sign(payload, process.env.JWT_KEY);
+        const token = jwt.sign(payload, "secret" );
+        console.log(token)
         res.set("Authorization", token);
         res.status(204).send("Success");
       }
@@ -28,32 +31,13 @@ const createToken = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-/*
-const authMidComprador = async (req, res, next) => {
-  const token = req.headers.authorization;
-  if (token) {
-    try {
-      const payload = jwt.verify(token, process.env.JWT_KEY);
-      if (payload.role === "comprador") {
-        return next();
-      } else {
-        return res.status(400).send("Invalid token");
-      }
-    } catch (error) {
-      return res.status(500).send(error.message);
-    }
-  } else {
-    return res.status(401).send("Não autorizado");
-  }
-};
-*/
 
 const authMidVendedor = async (req, res, next) => {
   const token = req.headers.authorization;
   if (token) {
     try {
-      const payload = jwt.verify(token, process.env.JWT_KEY);
-      if (payload === "Vendedor") {
+      const payload = jwt.verify(token, "secret");
+      if (payload) {
         return next();
       } else {
         return res.status(400).send("Invalid token");
@@ -69,5 +53,5 @@ const authMidVendedor = async (req, res, next) => {
 module.exports = {
   authMidVendedor,
   createToken,
-//  authMidComprador//
+
 };

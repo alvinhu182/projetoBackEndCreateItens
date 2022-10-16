@@ -4,7 +4,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Itens', 
     [{
-      id: 1,
+      item_id: 1,
       vendedor_id: 1,
       nome_do_item: "Espada de fogo",
       disponivel: true,
@@ -13,7 +13,7 @@ module.exports = {
    
     },
     {
-      id: 2,
+      item_id: 2,
       vendedor_id: 2,
       nome_do_item: "Arco de gelo",
       disponivel: true,
@@ -22,7 +22,7 @@ module.exports = {
 
     },
     {
-      id: 3,
+      item_id: 3,
       vendedor_id: 3,
       nome_do_item: "Cajado de luz",
       disponivel: true,
@@ -31,7 +31,7 @@ module.exports = {
 
     },
     {
-      id: 4,
+      item_id: 4,
       vendedor_id:4,
       nome_do_item: "Adaga venenosa",
       disponivel: true,

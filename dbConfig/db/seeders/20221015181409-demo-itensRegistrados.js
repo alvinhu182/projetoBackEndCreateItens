@@ -9,7 +9,6 @@ module.exports = {
      */ 
       await queryInterface.bulkInsert('ItensRegistrados', 
       [{
-        id:1,
         item_id:1,
         vendedor_id: 1,
         status: true,
@@ -20,7 +19,6 @@ module.exports = {
 
       },
       {  
-        id:2,
         item_id:2,
         vendedor_id: 2,
         status: true,
@@ -30,7 +28,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id:3,
         item_id:3,
         vendedor_id: 3,
         status: true,
@@ -40,7 +37,6 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id:4,
         item_id:4,
         vendedor_id:4,
         status: true,

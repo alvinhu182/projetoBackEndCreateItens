@@ -1,24 +1,24 @@
-'use strict';
+
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('itens', {
-      item_id: {
+    await queryInterface.createTable("AdminUsers", {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      disponivel: {
-        type: Sequelize.BOOLEAN
+      nome: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
-      vendedor_id: {
-        type: Sequelize.INTEGER,
-        reference: {
-          model: "Pessoas", key: "id",
-          unique: true
-        }
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
-      nome_do_item: {
+      senha: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -32,6 +32,7 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('itens');
+    await queryInterface.dropTable("AdminUsers");
   }
 };
+

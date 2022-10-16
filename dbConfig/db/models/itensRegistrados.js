@@ -19,10 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   itensRegistrados.init({
-    itensRegistrados_id: DataTypes.INTEGER,
+   // itensRegistrados_id: DataTypes.INTEGER,
     status:DataTypes.BOOLEAN,
     vendedor_id: DataTypes.INTEGER,
-    tipo: DataTypes.STRING,
     preco: DataTypes.STRING,
     data_listagem: DataTypes.DATEONLY
     },

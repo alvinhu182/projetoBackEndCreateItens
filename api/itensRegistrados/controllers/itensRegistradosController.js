@@ -2,7 +2,7 @@ const database = require("../../../dbConfig/db/models");
 class ItemController {
   static async getAllitensRegistrados(req, res) {
     try {
-      const allitensRegistrados = await database.Turmas.findAll();
+      const allitensRegistrados = await database.itensRegistrados.findAll();
       return res.status(200).send(allitensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
@@ -10,18 +10,24 @@ class ItemController {
   }
 
   static async getOneitensRegistrados(req, res) {
+    
     const { itensRegistrados_id } = req.params;
     try {
-      const oneitensRegistrados = await database.Itens.findOne({
+      const oneitensRegistrados = await database.itensRegistrados.findOne({
         where: {
           id: Number(itensRegistrados_id)
         }
+       
       });
+      if(!itensRegistrados_id){
+        return res.status(404).send("item não existe, tente outro id");
+      }
       return res.status(200).send(oneitensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
+
 
   static async createitensRegistrados(req, res) {
     const newitensRegistrados = req.body;
@@ -38,10 +44,10 @@ class ItemController {
     const newitensRegistradosInfo = req.body;
     try {
       await database.Itens.update(newitensRegistradosInfo, {
-        where: { id: Number(itensRegistrados_id) }
+        where: { item_id: Number(itensRegistrados_id) }
       });
       const upateditensRegistrados = await database.Itens.findOne({
-        where: { id: Number(itensRegistrados_id) }
+        where: { item_id: Number(itensRegistrados_id) }
       });
       return res.status(200).send(upateditensRegistrados);
     } catch (error) {
@@ -54,7 +60,7 @@ class ItemController {
     try {
       await database.Itens.destroy({
         where: {
-          id: Number(itensRegistrados_id)
+          item_id: Number(itensRegistrados_id)
         }
       });
       return res

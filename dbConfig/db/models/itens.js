@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Itens.hasMany(models.itensRegistrados, {
-        foreignKey: "itens_id"
+        foreignKey: "item_id"
       });
       Itens.belongsTo(models.pessoas, {
         constraints: true,
