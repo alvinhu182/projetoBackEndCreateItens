@@ -19,7 +19,7 @@ router.post("/itens", authMidVendedor, itensRegistradosController.createitensReg
 
 // ------------ PUT -------------
 //Edita um item
-router.put("/itens/:itensRegistrados_id", itensRegistradosController.updateitensRegistrados);
+//router.put("/itens/:itensRegistrados_id", itensRegistradosController.updateitensRegistrados);
 
 // ------------ DELETE -------------
 //Deleta uma item

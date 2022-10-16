@@ -8,9 +8,9 @@ class User {
     const isSenha = senha
       ? validator.isStrongPassword(senha, [
           { minLength: 8 },
-          { minUppercase: 1 },
-          { minSymbols: 1 },
-          { minNumbers: 1 },
+          { minUppercase: 0 },
+          { minSymbols: 0 },
+          { minNumbers: 0 },
           {}
         ])
       : false;

@@ -32,35 +32,18 @@ class ItemController {
   static async createitensRegistrados(req, res) {
     const newitensRegistrados = req.body;
     try {
-      const newCreateditensRegistrados = await database.Itens.create(newitensRegistrados);
+      const newCreateditensRegistrados = await database.itensRegistrados.create(newitensRegistrados);
       return res.status(200).send(newCreateditensRegistrados);
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
-
-  static async updateitensRegistrados(req, res) {
-    const { itensRegistrados } = req.params;
-    const newitensRegistradosInfo = req.body;
-    try {
-      await database.Itens.update(newitensRegistradosInfo, {
-        where: { item_id: Number(itensRegistrados_id) }
-      });
-      const upateditensRegistrados = await database.Itens.findOne({
-        where: { item_id: Number(itensRegistrados_id) }
-      });
-      return res.status(200).send(upateditensRegistrados);
-    } catch (error) {
-      return res.status(500).send(error.message);
-    }
-  }
-
   static async deleteitensRegistrados(req, res) {
     const { itensRegistrados_id } = req.params;
     try {
-      await database.Itens.destroy({
+      await database.itensRegistrados.destroy({
         where: {
-          item_id: Number(itensRegistrados_id)
+          id: Number(itensRegistrados_id)
         }
       });
       return res
