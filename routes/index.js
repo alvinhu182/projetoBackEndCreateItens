@@ -1,4 +1,4 @@
-const pessoas = require("../api/Pessoas/routes");
+const pessoas = require("../api/pessoas/routes");
 const itensRegistrados = require("../api/itensRegistrados/routes");
 const user = require("../api/Usuarios/routes");
 const { createToken } = require("../api/Usuarios/services/auth.service");

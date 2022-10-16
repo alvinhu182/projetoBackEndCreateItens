@@ -7,14 +7,16 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+        
       },
       vendedor_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: "Pessoas",
-          key: "id"
-        }
+          key: "id",
+          unique: true
+       }
       },
       status: {
         type: Sequelize.BOOLEAN
@@ -23,7 +25,8 @@ module.exports = {
         allowNull: false,
         references:{
           model: "itens",
-          key: "id"
+          key: "id",
+          unique: true
         },
         type: Sequelize.INTEGER,
       },
